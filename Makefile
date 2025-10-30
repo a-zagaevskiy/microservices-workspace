@@ -1,32 +1,33 @@
-project:=ms-workspace-demo
+project:=msupandrunning
 
-ifeq ($(OS),Windows_NT)
-	CHECKOUT_BIN:=bin/checkout.exe
-else
-	UNAME_S:=$(shell uname -s)
-	MNAME_S:=$(shell uname -m)
-	ifeq ($(UNAME_S),Linux)
-		ifeq ($(MNAME_S),x86_64)
-			CHECKOUT_BIN:=bin/checkout-linux-intel
-		endif
-		ifeq ($(MNAME_S),x86)
-			CHECKOUT_BIN:=bin/checkout-linux-intel
-		endif		
-		ifeq ($(MNAME_S),aarch64)
-			CHECKOUT_BIN:=bin/checkout-linux-arm
-		endif
-
-		CHECKOUT_BIN:=bin/checkout-linux
-	endif
-	ifeq ($(UNAME_S),Darwin)
-		ifeq ($(MNAME_S),x86_64)
-			CHECKOUT_BIN:=bin/checkout-mac
-		endif
-		ifeq ($(MNAME_S),arm64)
-			CHECKOUT_BIN:=bin/checkout-mac-applesilicon
-		endif
-	endif
-endif
+CHECKOUT_BIN:=bin/checkout-linux-intel
+# ifeq ($(OS),Windows_NT)
+# 	CHECKOUT_BIN:=bin/checkout.exe
+# else
+# 	UNAME_S:=$(shell uname -s)
+# 	MNAME_S:=$(shell uname -m)
+# 	ifeq ($(UNAME_S),Linux)
+# 		ifeq ($(MNAME_S),x86_64)
+# 			CHECKOUT_BIN:=bin/checkout-linux-intel
+# 		endif
+# 		ifeq ($(MNAME_S),x86)
+# 			CHECKOUT_BIN:=bin/checkout-linux-intel
+# 		endif		
+# 		ifeq ($(MNAME_S),aarch64)
+# 			CHECKOUT_BIN:=bin/checkout-linux-arm
+# 		endif
+# 
+# 		CHECKOUT_BIN:=bin/checkout-linux
+# 	endif
+# 	ifeq ($(UNAME_S),Darwin)
+# 		ifeq ($(MNAME_S),x86_64)
+# 			CHECKOUT_BIN:=bin/checkout-mac
+# 		endif
+# 		ifeq ($(MNAME_S),arm64)
+# 			CHECKOUT_BIN:=bin/checkout-mac-applesilicon
+# 		endif
+# 	endif
+# endif
 
 .PHONY: default
 default: update start

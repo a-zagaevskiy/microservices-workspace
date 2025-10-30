@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-set -eu
+#!/usr/bin/env bash
 
-export COMPOSE_PROJECT_NAME=microservices-workspace-demo
+export COMPOSE_PROJECT_NAME=msupandrunning
 
-pushd ms-demo-node && make start
-popd
-pushd ms-demo-golang && make start
-popd
+export wkdr=$PWD
+cd $wkdr/ms-flights && make start
+cd $wkdr/ms-reservations && make start
 
+cd $wkdr
 make proxystart
 
+unset wkdr
